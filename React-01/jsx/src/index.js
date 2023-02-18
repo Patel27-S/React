@@ -15,12 +15,10 @@ const root = ReactDOM.createRoot(el);
 // A component is a function that returns some jsx
 function App(){
 
-    let message = 'Hey, What is up? This is Smit.'
+    const date = new Date();
+    const time = date.toLocaleTimeString();
 
-    if(Math.random > 0.1){
-        message = 'I hope you are doing great!'
-    }
-    return <h1>{message}</h1>;
+    return <h1>{time}</h1>;
 }
 
 // 5) Show the component on screen.
