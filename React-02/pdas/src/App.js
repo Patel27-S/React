@@ -1,14 +1,22 @@
 import ProfileCard from "./ProfileCard";
+import AlexaImage from "./images/alexa.png";
+import CortanaImage from "./images/cortana.png";
+import SiriImage from "./images/siri.png";
 
+
+// Above Imported Images are nothing NOW but the 
+// JavaScript variables.
+// As shown below, JS Variables when in JSX form are 
+// written inside of curly braces.
 
 function App(){
     return (
     <div>
         <div>Personal Digital Assistants</div>
-
-        <ProfileCard title = "Alexa" handle = "@alexa99"/>
-        <ProfileCard title = "Cortona" handle = "@cortona32"/>
-        <ProfileCard title = "Siri" handle = "@siri01"/>
+        
+        <ProfileCard title = "Alexa" handle = "@alexa99" image={AlexaImage}/>
+        <ProfileCard title = "Cortana" handle = "@cortana32" image={CortanaImage}/>
+        <ProfileCard title = "Siri" handle = "@siri01" image={SiriImage}/>
 
     </div>
     );
