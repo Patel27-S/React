@@ -1,4 +1,4 @@
-function ProfileCard({title, handle}){
+function ProfileCard({title, handle, image}){
 
     // const title = whatever.title;
     // const handle = whatever.handle;
@@ -11,10 +11,11 @@ function ProfileCard({title, handle}){
     return( 
     <div>
 
-        <div>ProfileCard</div>
+        {/* <div>ProfileCard</div> */}
+        <img src={image}/>
         <div>Title is {title}</div>
         <div>Handle is {handle}</div>
-        
+
 
     </div>
     )
