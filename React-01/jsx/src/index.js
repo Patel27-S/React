@@ -15,10 +15,10 @@ const root = ReactDOM.createRoot(el);
 // A component is a function that returns some jsx
 function App(){
 
-    const date = new Date();
-    const time = date.toLocaleTimeString();
+    // const date = new Date();
+    // const time = date.toLocaleTimeString();
 
-    return <h1>{time}</h1>;
+    return <h1>{new Date().toLocaleTimeString()}</h1>;
 }
 
 // 5) Show the component on screen.
