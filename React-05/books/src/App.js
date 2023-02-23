@@ -11,7 +11,7 @@ function App(){
 
     return (
         <div>
-            This is a Book App.
+            
             <BookCreate onCreate={createBook}/>
         </div>
     );
