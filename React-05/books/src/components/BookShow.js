@@ -1,49 +1,42 @@
-import { useState } from "react";
+import { useState, useContext } from 'react';
+import BooksContext from '../context/books';
+import BookEdit from './BookEdit';
 
-import BookEdit from "./BookEdit";
+function BookShow({ book }) {
+  const [showEdit, setShowEdit] = useState(false);
+  const { deleteBookById } = useContext(BooksContext);
 
-function BookShow({book, key, onDelete, onEdit}){
+  const handleDeleteClick = () => {
+    deleteBookById(book.id);
+  };
 
-    const [showEdit, setShowEdit] = useState(false);
+  const handleEditClick = () => {
+    setShowEdit(!showEdit);
+  };
 
-    const handleClick = () =>{
-        onDelete(book.id);
-    };
+  const handleSubmit = () => {
+    setShowEdit(false);
+  };
 
-    const handleEdit = () =>{
-        if(showEdit === true){
-            setShowEdit(false);
-        }
-        else{
-            setShowEdit(true);
-        };
-    };
+  let content = <h3>{book.title}</h3>;
+  if (showEdit) {
+    content = <BookEdit onSubmit={handleSubmit} book={book} />;
+  }
 
-    const handleSubmit = (id, newTitle) =>{
-        setShowEdit(false);
-        onEdit(id, newTitle);
-    };
-
-    let content = <h3>{book.title}</h3>
-
-    if(showEdit === true){
-        content = <BookEdit book = {book} onSubmit={handleSubmit}/>
-    }
-
-    return (
-        <div className="book-show">
-            <img src={`https://picsum.photos/seed/${book.id}/300/200`} alt="books"/>
-            <div>{content}</div>
-            <div className="actions">
-                <button className="edit" onClick={handleEdit}>
-                    Edit
-                </button>
-                <button className="delete" onClick={handleClick}>
-                    Delete
-                </button>
-            </div>
-        </div>
-    )
+  return (
+    <div className="book-show">
+      <img alt="books" src={`https://picsum.photos/seed/${book.id}/300/200`} />
+      <div>{content}</div>
+      <div className="actions">
+        <button className="edit" onClick={handleEditClick}>
+          Edit
+        </button>
+        <button className="delete" onClick={handleDeleteClick}>
+          Delete
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default BookShow;

@@ -1,35 +1,28 @@
-import { useState } from "react";
+import { useState, useContext } from 'react';
+import BooksContext from '../context/books';
 
+function BookEdit({ book, onSubmit }) {
+  const [title, setTitle] = useState(book.title);
+  const { editBookById } = useContext(BooksContext);
 
-function BookEdit({book, onSubmit}){
+  const handleChange = (event) => {
+    setTitle(event.target.value);
+  };
 
-    // Making sure whatever the original title is 
-    // ,is always displayed even when we try editing the 
-    // book's title
-    const [title, setTitle] = useState(book.title);
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const handleChange = (event) =>{
-        // event.preventDefault();
-        setTitle(event.target.value);
-    }
+    onSubmit();
+    editBookById(book.id, title);
+  };
 
-
-    const handleSubmit = (event) =>{
-        event.preventDefault();
-        // onEdit(book.id, title);
-        onSubmit(book.id, title);
-    }
-
-
-    return (
-        <form onSubmit={handleSubmit} className="book-edit">
-            <label>Title</label>
-            <input className="input" value={title} onChange={handleChange}/>
-            <button className="button is-primary">
-                Save
-            </button>
-        </form>
-    )
+  return (
+    <form onSubmit={handleSubmit} className="book-edit">
+      <label>Title</label>
+      <input className="input" value={title} onChange={handleChange} />
+      <button className="button is-primary">Save</button>
+    </form>
+  );
 }
 
 export default BookEdit;
