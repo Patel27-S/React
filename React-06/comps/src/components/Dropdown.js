@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // import handleSelect from "../"
 import {GoChevronDown} from "react-icons/go";
@@ -10,6 +10,28 @@ function Dropdown({options, value, onChange}){
 
 
     const [selected, setSelected] = useState('Select...');
+
+    const divEl = useRef();
+
+
+    useEffect(()=>{
+        const handler = (event) =>{
+            // console.log(divEl);
+            if(!divEl.current){
+                return;
+            }
+
+            if(divEl.current.contains(event.target)){
+                setIsOpen(false);
+            }
+        }
+
+        document.addEventListener('click', handler, true);
+
+        return ()=>{
+            document.removeEventListener('click', handler);
+        }
+    }, []);
 
 
     const handleClick = () =>{
@@ -39,7 +61,7 @@ function Dropdown({options, value, onChange}){
 
 
     return (
-    <div className="w-48 relative ">
+    <div ref={divEl} className="w-48 relative ">
         <div 
             className="flex justify-between items-center cursor-pointer rounded p-3 shadow bg-white w-full" 
             onClick={handleClick}>
