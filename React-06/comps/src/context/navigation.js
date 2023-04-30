@@ -23,7 +23,7 @@ function NavigationProvider({children}) {
         window.history.pushState({}, '', to);
         setCurrentPath(to);
     };
-
+ 
     return (
     <NavigationContext.Provider value={{ currentPath, navigate}}>
         <div>
