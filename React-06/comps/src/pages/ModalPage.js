@@ -13,7 +13,7 @@ function ModalPage(){
     }
 
     return (
-        <div>
+        <div className='relative'>
             <Button onClick={handleClick} primary>Open Modal</Button>
             {/* Below is a Rule :- */}
             {showModal && <Modal />}
